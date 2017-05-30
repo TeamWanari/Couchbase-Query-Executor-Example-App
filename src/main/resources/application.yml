@@ -1,0 +1,22 @@
+couchbase:
+  ip: localhost
+  bucket: dev-bucket
+  password:
+
+sync-gateway:
+  ip: localhost
+  port:
+    public: 4984
+    admin: 4985
+  username: example-app-user
+  password: example-app-user
+  admin-channels: "*"
+  url:
+    placeholder:
+      db: <db>
+      name: <name>
+    base:
+      public: http://${sync-gateway.ip}:${sync-gateway.port.public}
+      admin: http://${sync-gateway.ip}:${sync-gateway.port.admin}
+    create-session: ${sync-gateway.url.base.admin}/${sync-gateway.url.placeholder.db}/_session
+    create-or-update-user: ${sync-gateway.url.base.admin}/${sync-gateway.url.placeholder.db}/_user/${sync-gateway.url.placeholder.name}
