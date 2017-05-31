@@ -27,8 +27,10 @@ import static com.wanari.utils.couchbase.CouchbaseQueryExecutor.CONTAINS_FILTER;
 public class UserService extends BaseService {
 
     private static final String USERNAME_REQUEST_PARAM = "username";
+    private static final String STATUS_REQUEST_PARAM = "status";
 
     private static final String USERNAME_CONTAINS_FILTER = "username" + CONTAINS_FILTER;
+    private static final String STATUS_FILTER = "status";
 
     private final SyncGatewayApi syncGatewayApi;
     private final UserRepository userRepository;
@@ -69,6 +71,7 @@ public class UserService extends BaseService {
         CouchbaseFilter filters = new CouchbaseFilter();
 
         filters.putIfNotEmpty(USERNAME_CONTAINS_FILTER, params.get(USERNAME_REQUEST_PARAM));
+        filters.putIfNotEmpty(STATUS_FILTER, params.get(STATUS_REQUEST_PARAM));
 
         return filters.toJsonObject();
     }

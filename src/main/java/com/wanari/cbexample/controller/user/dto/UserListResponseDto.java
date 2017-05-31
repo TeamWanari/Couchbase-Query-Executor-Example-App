@@ -5,6 +5,7 @@ import com.wanari.cbexample.controller.shared.dto.SuccessfulResponseDto;
 public class UserListResponseDto extends SuccessfulResponseDto {
 
     private String username;
+    private String status;
 
     public String getUsername() {
         return username;
@@ -14,4 +15,11 @@ public class UserListResponseDto extends SuccessfulResponseDto {
         this.username = username;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

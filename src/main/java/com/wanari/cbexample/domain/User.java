@@ -13,6 +13,9 @@ public class User extends SyncGatewayDocument {
     @Field
     private String password;
 
+    @Field
+    private Status status;
+
     public String getUsername() {
         return username;
     }
@@ -27,6 +30,19 @@ public class User extends SyncGatewayDocument {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public enum Status {
+        ACTIVE,
+        INACTIVE
     }
 
 }
