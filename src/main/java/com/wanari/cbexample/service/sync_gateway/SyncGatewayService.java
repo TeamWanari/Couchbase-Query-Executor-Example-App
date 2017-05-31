@@ -1,4 +1,4 @@
-package com.wanari.cbexample.service;
+package com.wanari.cbexample.service.sync_gateway;
 
 import com.wanari.cbexample.util.sync_gateway.SyncGatewayApi;
 import org.springframework.beans.factory.annotation.Value;

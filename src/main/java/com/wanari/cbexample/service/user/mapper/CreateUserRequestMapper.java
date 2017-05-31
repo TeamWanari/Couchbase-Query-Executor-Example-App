@@ -1,0 +1,17 @@
+package com.wanari.cbexample.service.user.mapper;
+
+import com.wanari.cbexample.controller.user.dto.CreateUserRequestDto;
+import com.wanari.cbexample.domain.User;
+import com.wanari.cbexample.service.sync_gateway.DocumentType;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
+@Mapper(componentModel = "spring")
+public interface CreateUserRequestMapper {
+    @Mapping(target = "type", expression = "java(getDefaultType())")
+    User map(CreateUserRequestDto dto);
+
+    default String getDefaultType() {
+        return DocumentType.USER;
+    }
+}

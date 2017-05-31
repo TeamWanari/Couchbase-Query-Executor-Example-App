@@ -1,4 +1,4 @@
-package com.wanari.cbexample.rest.shared.dto;
+package com.wanari.cbexample.controller.shared.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

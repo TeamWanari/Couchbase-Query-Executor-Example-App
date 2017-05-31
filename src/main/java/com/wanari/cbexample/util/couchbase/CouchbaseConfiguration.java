@@ -4,11 +4,12 @@ import com.wanari.utils.couchbase.CouchbaseQueryExecutorConfiguration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.couchbase.config.AbstractCouchbaseConfiguration;
+import org.springframework.data.couchbase.repository.config.EnableCouchbaseRepositories;
 
 import java.util.Collections;
 import java.util.List;
 
-//@EnableCouchbaseRepositories("com.wanari.cbexample.repository") TODO
+@EnableCouchbaseRepositories("com.wanari.cbexample.repository")
 @Configuration
 public class CouchbaseConfiguration extends AbstractCouchbaseConfiguration implements CouchbaseQueryExecutorConfiguration {
 

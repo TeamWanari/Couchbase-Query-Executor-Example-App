@@ -1,7 +1,16 @@
-package com.wanari.cbexample.rest.user.dto;
+package com.wanari.cbexample.domain;
 
-public class CreateUserRequestDto {
+import com.couchbase.client.java.repository.annotation.Field;
+import com.wanari.cbexample.util.sync_gateway.domain.SyncGatewayDocument;
+import org.springframework.data.couchbase.core.mapping.Document;
+
+@Document
+public class User extends SyncGatewayDocument {
+
+    @Field
     private String username;
+
+    @Field
     private String password;
 
     public String getUsername() {
@@ -19,4 +28,5 @@ public class CreateUserRequestDto {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }
