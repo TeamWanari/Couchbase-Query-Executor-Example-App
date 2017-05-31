@@ -2,6 +2,7 @@ package com.wanari.cbexample.util.sync_gateway;
 
 import com.wanari.cbexample.util.sync_gateway.request.CreateSessionRequestBody;
 import com.wanari.cbexample.util.sync_gateway.request.CreateUserRequestBody;
+import com.wanari.cbexample.util.sync_gateway.response.DocumentCreationResponse;
 import com.wanari.cbexample.util.sync_gateway.response.SessionResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -49,4 +50,7 @@ public class SyncGatewayApi {
         rest.put(urls.userCreation(username), body, headers.json(), SessionResponse.class);
     }
 
+    public <T> ResponseEntity<DocumentCreationResponse> createDocument(T document) {
+        return rest.post(urls.documentCreation(), document, headers.json(), DocumentCreationResponse.class);
+    }
 }

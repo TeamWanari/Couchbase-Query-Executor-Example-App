@@ -21,6 +21,9 @@ class SyncGatewayUrls {
     @Value("${sync-gateway.url.create-or-update-user}")
     private String createOrUpdateUser;
 
+    @Value("${sync-gateway.url.create-document}")
+    private String createDocument;
+
     private SyncGatewayUrls(CouchbaseConfiguration couchbaseConfiguration) {
         this.couchbaseConfiguration = couchbaseConfiguration;
     }
@@ -35,4 +38,8 @@ class SyncGatewayUrls {
             .replaceAll(namePlaceholder, username);
     }
 
+    String documentCreation() {
+        return createDocument
+            .replaceAll(dbPlaceholder, couchbaseConfiguration.getBucketName());
+    }
 }
