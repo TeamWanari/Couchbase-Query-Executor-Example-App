@@ -2,7 +2,7 @@ package com.wanari.cbexample.controller.user.dto;
 
 import com.wanari.cbexample.controller.shared.dto.SuccessfulResponseDto;
 
-public class UserListResponseDto extends SuccessfulResponseDto {
+public class UserListResponseDtoSg extends SuccessfulResponseDto {
 
     private String username;
     private String status;

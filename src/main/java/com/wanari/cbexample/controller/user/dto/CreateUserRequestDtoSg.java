@@ -1,11 +1,11 @@
 package com.wanari.cbexample.controller.user.dto;
 
-import com.wanari.cbexample.domain.User;
+import com.wanari.cbexample.domain.UserSg;
 
-public class CreateUserRequestDto {
+public class CreateUserRequestDtoSg {
     private String username;
     private String password;
-    private User.Status status;
+    private UserSg.Status status;
 
     public String getUsername() {
         return username;
@@ -23,11 +23,11 @@ public class CreateUserRequestDto {
         this.password = password;
     }
 
-    public User.Status getStatus() {
+    public UserSg.Status getStatus() {
         return status;
     }
 
-    public void setStatus(User.Status status) {
+    public void setStatus(UserSg.Status status) {
         this.status = status;
     }
 }

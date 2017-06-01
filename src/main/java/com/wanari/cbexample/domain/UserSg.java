@@ -5,7 +5,7 @@ import com.wanari.cbexample.util.sync_gateway.domain.SyncGatewayDocument;
 import org.springframework.data.couchbase.core.mapping.Document;
 
 @Document
-public class User extends SyncGatewayDocument {
+public class UserSg extends SyncGatewayDocument {
 
     @Field
     private String username;

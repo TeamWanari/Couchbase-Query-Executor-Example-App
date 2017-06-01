@@ -3,13 +3,13 @@ package com.wanari.cbexample.service.user;
 import com.couchbase.client.java.document.json.JsonObject;
 import com.wanari.cbexample.controller.shared.dto.ErrorDto;
 import com.wanari.cbexample.controller.shared.dto.SuccessfulResponseDto;
-import com.wanari.cbexample.controller.user.dto.CreateUserRequestDto;
-import com.wanari.cbexample.controller.user.dto.UserListResponseDto;
-import com.wanari.cbexample.domain.User;
-import com.wanari.cbexample.repository.UserRepository;
+import com.wanari.cbexample.controller.user.dto.CreateUserRequestDtoSg;
+import com.wanari.cbexample.controller.user.dto.UserListResponseDtoSg;
+import com.wanari.cbexample.domain.UserSg;
+import com.wanari.cbexample.repository.UserRepositorySg;
 import com.wanari.cbexample.service.shared.BaseService;
-import com.wanari.cbexample.service.user.mapper.CreateUserRequestMapper;
-import com.wanari.cbexample.service.user.mapper.UserListResponseMapper;
+import com.wanari.cbexample.service.user.mapper.CreateUserRequestMapperSg;
+import com.wanari.cbexample.service.user.mapper.UserListResponseMapperSg;
 import com.wanari.cbexample.util.sync_gateway.SyncGatewayApi;
 import com.wanari.cbexample.util.sync_gateway.response.DocumentCreationResponse;
 import com.wanari.utils.couchbase.CouchbaseFilter;
@@ -24,7 +24,7 @@ import java.util.Map;
 import static com.wanari.utils.couchbase.CouchbaseQueryExecutor.CONTAINS_FILTER;
 
 @Service
-public class UserService extends BaseService {
+public class UserServiceSg extends BaseService {
 
     private static final String USERNAME_REQUEST_PARAM = "username";
     private static final String STATUS_REQUEST_PARAM = "status";
@@ -33,24 +33,24 @@ public class UserService extends BaseService {
     private static final String STATUS_FILTER = "status";
 
     private final SyncGatewayApi syncGatewayApi;
-    private final UserRepository userRepository;
+    private final UserRepositorySg userRepositorySg;
 
-    private final CreateUserRequestMapper createUserRequestMapper;
-    private final UserListResponseMapper userListResponseMapper;
+    private final CreateUserRequestMapperSg createUserRequestMapperSg;
+    private final UserListResponseMapperSg userListResponseMapperSg;
 
-    public UserService(SyncGatewayApi syncGatewayApi,
-                       UserRepository userRepository,
-                       CreateUserRequestMapper createUserRequestMapper,
-                       UserListResponseMapper userListResponseMapper) {
+    public UserServiceSg(SyncGatewayApi syncGatewayApi,
+                         UserRepositorySg userRepositorySg,
+                         CreateUserRequestMapperSg createUserRequestMapperSg,
+                         UserListResponseMapperSg userListResponseMapperSg) {
         this.syncGatewayApi = syncGatewayApi;
-        this.userRepository = userRepository;
-        this.createUserRequestMapper = createUserRequestMapper;
-        this.userListResponseMapper = userListResponseMapper;
+        this.userRepositorySg = userRepositorySg;
+        this.createUserRequestMapperSg = createUserRequestMapperSg;
+        this.userListResponseMapperSg = userListResponseMapperSg;
     }
 
-    public Either<ErrorDto, SuccessfulResponseDto> createUser(CreateUserRequestDto user) {
+    public Either<ErrorDto, SuccessfulResponseDto> createUser(CreateUserRequestDtoSg user) {
 
-        ResponseEntity<DocumentCreationResponse> response = syncGatewayApi.createDocument(createUserRequestMapper.map(user));
+        ResponseEntity<DocumentCreationResponse> response = syncGatewayApi.createDocument(createUserRequestMapperSg.map(user));
 
         if(response.getStatusCode().is2xxSuccessful()) {
             return Either.right(emptyResponse);
@@ -62,9 +62,9 @@ public class UserService extends BaseService {
         }
     }
 
-    public Either<ErrorDto, CouchbasePage<UserListResponseDto>> findAll(Map<String, String> params, Pageable pageable) {
-        CouchbasePage<User> users = userRepository.findAll(filtersFromParams(params), pageable);
-        return Either.right(users.map(userListResponseMapper::map));
+    public Either<ErrorDto, CouchbasePage<UserListResponseDtoSg>> findAll(Map<String, String> params, Pageable pageable) {
+        CouchbasePage<UserSg> users = userRepositorySg.findAll(filtersFromParams(params), pageable);
+        return Either.right(users.map(userListResponseMapperSg::map));
     }
 
     private JsonObject filtersFromParams(Map<String, String> params) {
