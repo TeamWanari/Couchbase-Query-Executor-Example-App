@@ -13,8 +13,8 @@ import com.wanari.cbexample.service.user.mapper.UserListResponseMapperSg;
 import com.wanari.cbexample.util.sync_gateway.SyncGatewayApi;
 import com.wanari.cbexample.util.sync_gateway.response.DocumentCreationResponse;
 import com.wanari.utils.couchbase.CouchbaseFilter;
-import com.wanari.utils.couchbase.CouchbasePage;
 import io.vavr.control.Either;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -62,8 +62,8 @@ public class UserServiceSg extends BaseService {
         }
     }
 
-    public Either<ErrorDto, CouchbasePage<UserListResponseDto>> findAll(Map<String, String> params, Pageable pageable) {
-        CouchbasePage<UserSg> users = userRepositorySg.findAll(filtersFromParams(params), pageable);
+    public Either<ErrorDto, Page<UserListResponseDto>> findAll(Map<String, String> params, Pageable pageable) {
+        Page<UserSg> users = userRepositorySg.findAll(filtersFromParams(params), pageable);
         return Either.right(users.map(userListResponseMapperSg::map));
     }
 

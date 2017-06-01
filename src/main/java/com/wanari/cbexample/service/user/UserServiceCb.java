@@ -12,8 +12,8 @@ import com.wanari.cbexample.service.shared.BaseService;
 import com.wanari.cbexample.service.user.mapper.CreateUserRequestMapperCb;
 import com.wanari.cbexample.service.user.mapper.UserListResponseMapperCb;
 import com.wanari.utils.couchbase.CouchbaseFilter;
-import com.wanari.utils.couchbase.CouchbasePage;
 import io.vavr.control.Either;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -54,8 +54,8 @@ public class UserServiceCb extends BaseService {
         return Either.right(emptyResponse);
     }
 
-    public Either<ErrorDto, CouchbasePage<UserListResponseDto>> findAll(Map<String, String> params, Pageable pageable) {
-        CouchbasePage<UserCb> users = userListRepositoryCb.findAll(filtersFromParams(params), pageable);
+    public Either<ErrorDto, Page<UserListResponseDto>> findAll(Map<String, String> params, Pageable pageable) {
+        Page<UserCb> users = userListRepositoryCb.findAll(filtersFromParams(params), pageable);
         return Either.right(users.map(userListResponseMapperCb::map));
     }
 

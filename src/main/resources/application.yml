@@ -23,3 +23,7 @@ sync-gateway:
     create-or-update-user: ${sync-gateway.url.base.admin}/${sync-gateway.url.placeholder.db}/_user/${sync-gateway.url.placeholder.name}
     # Public API
     create-document: ${sync-gateway.url.base.public}/${sync-gateway.url.placeholder.db}/
+
+#couchbase-query-executor:
+#  with-sync-gateway: false
+#  use-default-id-fields: true

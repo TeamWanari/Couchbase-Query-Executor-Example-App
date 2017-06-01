@@ -2,8 +2,8 @@ package com.wanari.cbexample.repository;
 
 import com.couchbase.client.java.document.json.JsonObject;
 import com.wanari.cbexample.domain.UserSg;
-import com.wanari.utils.couchbase.CouchbasePage;
 import com.wanari.utils.couchbase.CouchbaseQueryExecutor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +16,7 @@ public class UserRepositorySg {
         this.couchbaseQueryExecutor = couchbaseQueryExecutor;
     }
 
-    public CouchbasePage<UserSg> findAll(JsonObject filters, Pageable pageable) {
+    public Page<UserSg> findAll(JsonObject filters, Pageable pageable) {
         return couchbaseQueryExecutor.find(filters, pageable, UserSg.class);
     }
 
