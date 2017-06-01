@@ -4,7 +4,7 @@ import com.couchbase.client.java.document.json.JsonObject;
 import com.wanari.cbexample.controller.shared.dto.ErrorDto;
 import com.wanari.cbexample.controller.shared.dto.SuccessfulResponseDto;
 import com.wanari.cbexample.controller.user.dto.CreateUserRequestDtoSg;
-import com.wanari.cbexample.controller.user.dto.UserListResponseDtoSg;
+import com.wanari.cbexample.controller.user.dto.UserListResponseDto;
 import com.wanari.cbexample.domain.UserSg;
 import com.wanari.cbexample.repository.UserRepositorySg;
 import com.wanari.cbexample.service.shared.BaseService;
@@ -62,7 +62,7 @@ public class UserServiceSg extends BaseService {
         }
     }
 
-    public Either<ErrorDto, CouchbasePage<UserListResponseDtoSg>> findAll(Map<String, String> params, Pageable pageable) {
+    public Either<ErrorDto, CouchbasePage<UserListResponseDto>> findAll(Map<String, String> params, Pageable pageable) {
         CouchbasePage<UserSg> users = userRepositorySg.findAll(filtersFromParams(params), pageable);
         return Either.right(users.map(userListResponseMapperSg::map));
     }

@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserRepositorySg {
 
-    private final CouchbaseQueryExecutor couchbaseQueryExecutor;
+    private final CouchbaseQueryExecutor<UserSg> couchbaseQueryExecutor;
 
-    public UserRepositorySg(CouchbaseQueryExecutor couchbaseQueryExecutor) {
+    public UserRepositorySg(CouchbaseQueryExecutor<UserSg> couchbaseQueryExecutor) {
         this.couchbaseQueryExecutor = couchbaseQueryExecutor;
     }
 

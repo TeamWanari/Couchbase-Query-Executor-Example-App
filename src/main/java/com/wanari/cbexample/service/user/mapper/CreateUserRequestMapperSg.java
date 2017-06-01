@@ -8,6 +8,7 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface CreateUserRequestMapperSg {
+
     @Mapping(target = "type", expression = "java(getDefaultType())")
     UserSg map(CreateUserRequestDtoSg dto);
 
