@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class SyncGatewayApi {
@@ -53,6 +55,13 @@ public class SyncGatewayApi {
 
     public <T extends SyncGatewayDocument> ResponseEntity<DocumentCreationResponse> createDocument(T document) {
         return rest.post(urls.documentCreation(), document, headers.json(), DocumentCreationResponse.class);
+    }
+
+    public <T extends SyncGatewayDocument> ResponseEntity<DocumentCreationResponse[]> createDocuments(List<T> documents) {
+        Map<String, List<T>> documentsToCreate = new HashMap<>();
+        documentsToCreate.put("docs", documents);
+
+        return rest.post(urls.multipleDocumentCreation(), documentsToCreate, headers.json(), DocumentCreationResponse[].class);
     }
 
 }

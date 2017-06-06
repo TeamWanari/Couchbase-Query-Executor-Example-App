@@ -24,6 +24,9 @@ class SyncGatewayUrls {
     @Value("${sync-gateway.url.create-document}")
     private String createDocument;
 
+    @Value("${sync-gateway.url.create-multiple-document}")
+    private String createMultipleDocument;
+
     private SyncGatewayUrls(CouchbaseConfiguration couchbaseConfiguration) {
         this.couchbaseConfiguration = couchbaseConfiguration;
     }
@@ -40,6 +43,11 @@ class SyncGatewayUrls {
 
     String documentCreation() {
         return createDocument
+            .replaceAll(dbPlaceholder, couchbaseConfiguration.getBucketName());
+    }
+
+    public String multipleDocumentCreation() {
+        return createMultipleDocument
             .replaceAll(dbPlaceholder, couchbaseConfiguration.getBucketName());
     }
 }

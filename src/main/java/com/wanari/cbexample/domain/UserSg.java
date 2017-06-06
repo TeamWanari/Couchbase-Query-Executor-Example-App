@@ -1,5 +1,6 @@
 package com.wanari.cbexample.domain;
 
+import com.couchbase.client.java.document.json.JsonArray;
 import com.couchbase.client.java.repository.annotation.Field;
 import com.wanari.cbexample.util.sync_gateway.domain.SyncGatewayDocument;
 import org.springframework.data.couchbase.core.mapping.Document;
@@ -15,6 +16,12 @@ public class UserSg extends SyncGatewayDocument {
 
     @Field
     private Status status;
+
+    @Field
+    private Integer age;
+
+    @Field
+    private AddressSg address;
 
     public String getUsername() {
         return username;
@@ -40,9 +47,35 @@ public class UserSg extends SyncGatewayDocument {
         this.status = status;
     }
 
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public AddressSg getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressSg address) {
+        this.address = address;
+    }
+
     public enum Status {
         ACTIVE,
-        INACTIVE
+        DELETED,
+        INACTIVE;
+
+        public static String nonDeletedFilter() {
+            return JsonArray
+                .from(
+                    ACTIVE.name(),
+                    INACTIVE.name()
+                )
+                .toString();
+        }
     }
 
 }
