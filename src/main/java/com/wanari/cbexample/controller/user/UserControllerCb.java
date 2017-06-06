@@ -43,4 +43,13 @@ public class UserControllerCb extends BaseController {
         );
     }
 
+    @RequestMapping(value = "init",
+        method = RequestMethod.POST)
+    public ResponseEntity<?> addExampleUsers() {
+        return userServiceCb.addExampleUsers().fold(
+            this::errorToResponse,
+            this::emptyResponse
+        );
+    }
+
 }

@@ -30,7 +30,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <io.vavr.version>0.9.0</io.vavr.version>
-        <couchbase-query-executor.version>1.0.4</couchbase-query-executor.version>
+        <couchbase-query-executor.version>1.0.5</couchbase-query-executor.version>
         <org.mapstruct.version>1.1.0.Final</org.mapstruct.version>
     </properties>
 

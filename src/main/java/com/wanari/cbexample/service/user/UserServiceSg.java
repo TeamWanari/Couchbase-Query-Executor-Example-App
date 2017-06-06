@@ -12,7 +12,6 @@ import com.wanari.cbexample.service.user.mapper.CreateUserRequestMapperSg;
 import com.wanari.cbexample.service.user.mapper.UserListResponseMapperSg;
 import com.wanari.cbexample.util.sync_gateway.SyncGatewayApi;
 import com.wanari.cbexample.util.sync_gateway.response.DocumentCreationResponse;
-import com.wanari.utils.couchbase.CouchbaseFilter;
 import io.vavr.control.Either;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,16 +20,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-import static com.wanari.utils.couchbase.CouchbaseQueryExecutor.CONTAINS_FILTER;
-
 @Service
 public class UserServiceSg extends BaseService {
 
     private static final String USERNAME_REQUEST_PARAM = "username";
     private static final String STATUS_REQUEST_PARAM = "status";
 
-    private static final String USERNAME_CONTAINS_FILTER = "username" + CONTAINS_FILTER;
-    private static final String STATUS_FILTER = "status";
+    private static final String USERNAME_FILTER_PARAM = "username";
+    private static final String STATUS_FILTER_PARAM = "status";
 
     private final SyncGatewayApi syncGatewayApi;
     private final UserRepositorySg userRepositorySg;
@@ -68,12 +65,13 @@ public class UserServiceSg extends BaseService {
     }
 
     private JsonObject filtersFromParams(Map<String, String> params) {
-        CouchbaseFilter filters = new CouchbaseFilter();
-
-        filters.putIfNotEmpty(USERNAME_CONTAINS_FILTER, params.get(USERNAME_REQUEST_PARAM));
-        filters.putIfNotEmpty(STATUS_FILTER, params.get(STATUS_REQUEST_PARAM));
-
-        return filters.toJsonObject();
+//        CouchbaseFilter filters = new CouchbaseFilter();
+//
+//        filters.putIfNotEmpty(USERNAME_FILTER_PARAM, params.get(USERNAME_REQUEST_PARAM));
+//        filters.putIfNotEmpty(STATUS_FILTER_PARAM, params.get(STATUS_REQUEST_PARAM));
+//
+//        return filters.toJsonObject();
+        return null;
     }
 
 }

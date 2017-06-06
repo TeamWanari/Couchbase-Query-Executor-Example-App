@@ -17,7 +17,8 @@ public class UserRepositorySg {
     }
 
     public Page<UserSg> findAll(JsonObject filters, Pageable pageable) {
-        return couchbaseQueryExecutor.find(filters, pageable, UserSg.class);
+//        return couchbaseQueryExecutor.find(filters, pageable, UserSg.class);
+        return null;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.wanari.cbexample.domain;
 
+import com.couchbase.client.java.document.json.JsonArray;
 import com.couchbase.client.java.repository.annotation.Field;
 import com.couchbase.client.java.repository.annotation.Id;
 import org.springframework.data.couchbase.core.mapping.Document;
@@ -18,6 +19,12 @@ public class UserCb {
 
     @Field
     private Status status;
+
+    @Field
+    private Integer age;
+
+    @Field
+    private AddressCb address;
 
     public String getId() {
         return id;
@@ -51,9 +58,35 @@ public class UserCb {
         this.status = status;
     }
 
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public AddressCb getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressCb address) {
+        this.address = address;
+    }
+
     public enum Status {
         ACTIVE,
-        INACTIVE
+        DELETED,
+        INACTIVE;
+
+        public static String nonDeletedFilter() {
+            return JsonArray
+                .from(
+                    ACTIVE.name(),
+                    INACTIVE.name()
+                )
+                .toString();
+        }
     }
 
 }

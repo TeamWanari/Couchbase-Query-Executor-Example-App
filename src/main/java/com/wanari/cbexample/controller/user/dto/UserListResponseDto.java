@@ -6,6 +6,8 @@ public class UserListResponseDto extends SuccessfulResponseDto {
 
     private String username;
     private String status;
+    private Integer age;
+    private AddressDtoCb address;
 
     public String getUsername() {
         return username;
@@ -21,5 +23,21 @@ public class UserListResponseDto extends SuccessfulResponseDto {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public AddressDtoCb getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressDtoCb address) {
+        this.address = address;
     }
 }
